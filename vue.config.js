@@ -1,10 +1,12 @@
+const path = require('path');
+
 module.exports = {
-  "pluginOptions": {
-    "autoRouting": {
-      "chunkNamePrefix": "page-"
-    }
-  },
-  "transpileDependencies": [
-    "vuetify"
-  ]
-}
+	transpileDependencies: ['vuetify'],
+	pluginOptions: {
+		dll: {
+			entry: ['vue', 'vue-router'],
+			output: path.join(__dirname, './public/dll'),
+			cacheFilePath: path.resolve(__dirname, './public'),
+		},
+	},
+};

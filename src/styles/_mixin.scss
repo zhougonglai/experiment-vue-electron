@@ -1,0 +1,245 @@
+.border-top-1px,
+.border-right-1px,
+.border-bottom-1px,
+.border-left-1px {
+	position: relative;
+	&::before,
+	&::after {
+		content: '';
+		display: block;
+		position: absolute;
+		transform-origin: 0 0;
+	}
+}
+
+.border-top-1px {
+	&::before {
+		border-top: 1px solid #e9e9ed;
+		left: 0;
+		top: 0;
+		width: 100%;
+		transform-origin: 0 top;
+	}
+}
+
+.border-right-1px {
+	&::after {
+		border-right: 1px solid #e9e9ed;
+		top: 0;
+		right: 0;
+		height: 100%;
+		transform-origin: right 0;
+	}
+}
+
+.border-bottom-1px {
+	&::after {
+		border-bottom: 1px solid #e9e9ed;
+		left: 0;
+		bottom: 0;
+		width: 100%;
+		transform-origin: 0 bottom;
+	}
+}
+
+.border-left-1px {
+	&::before {
+		border-left: 1px solid #e9e9ed;
+		top: 0;
+		left: 0;
+		height: 100%;
+		transform-origin: left 0;
+	}
+}
+
+@media (min-resolution: 2dppx) {
+	.border-top-1px {
+		&::before {
+			width: 200%;
+			transform: scale(0.5);
+		}
+	}
+	.border-right-1px {
+		&::after {
+			height: 200%;
+			transform: scale(0.5);
+		}
+	}
+	.border-bottom-1px {
+		&::after {
+			width: 200%;
+			transform: scale(0.5);
+		}
+	}
+	.border-left-1px {
+		&::before {
+			height: 200%;
+			transform: scale(0.5);
+		}
+	}
+}
+
+@media (min-resolution: 3dppx) {
+	.border-top-1px {
+		&::before {
+			width: 300%;
+			transform: scale(0.333);
+		}
+	}
+	.border-right-1px {
+		&::after {
+			height: 300%;
+			transform: scale(0.333);
+		}
+	}
+	.border-bottom-1px {
+		&::after {
+			width: 300%;
+			transform: scale(0.333);
+		}
+	}
+	.border-left-1px {
+		&::before {
+			height: 300%;
+			transform: scale(0.333);
+		}
+	}
+}
+
+/**
+* 溢出省略号
+* @param {Number} 行数
+*/
+@mixin ellipsis($rowCount: 1) {
+	@if $rowCount <=1 {
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	} @else {
+		min-width: 0;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		display: -webkit-box;
+		-webkit-line-clamp: $rowCount;
+		-webkit-box-orient: vertical;
+	}
+}
+
+/**
+* 真.1px边框
+* {List}: 多个方向边框, 默认值为bottom, 你可以根据需要传入(top, left, bottom, right) 4个方向;
+* {Color} 边框的颜色, 默认#ccc;
+* {List} 4个圆角半径, 默认0;
+* {String} 一个高级设置, 一般都不需要改动, 由于细边框的实现使用了css的伪类, 所以为了规避可能出现的样式冲突, 我们可以自己指定使用:after还是:before, 默认after;
+*/
+@mixin thinBorder(
+	$directionMaps: bottom,
+	$color: #ccc,
+	$radius: (
+		0,
+		0,
+		0,
+		0,
+	),
+	$position: after
+) {
+	// 是否只有一个方向
+	$isOnlyOneDir: string==type-of($directionMaps);
+
+	@if ($isOnlyOneDir) {
+		$directionMaps: ($directionMaps);
+	}
+
+	@each $directionMap in $directionMaps {
+		border-#{$directionMap}: 1px solid $color;
+	}
+
+	// 判断圆角是list还是number
+	@if (list==type-of($radius)) {
+		border-radius: nth($radius, 1)
+			nth($radius, 2)
+			nth($radius, 3)
+			nth($radius, 4);
+	} @else {
+		border-radius: $radius;
+	}
+
+	@media only screen and (-webkit-min-device-pixel-ratio: 2) {
+		& {
+			position: relative;
+
+			// 删除1像素密度比下的边框
+			@each $directionMap in $directionMaps {
+				border-#{$directionMap}: none;
+			}
+		}
+
+		&:#{$position} {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			display: block;
+			width: 200%;
+			height: 200%;
+			transform: scale(0.5);
+			box-sizing: border-box;
+			padding: 1px;
+			transform-origin: 0 0;
+			pointer-events: none;
+			border: 0 solid $color;
+
+			@each $directionMap in $directionMaps {
+				border-#{$directionMap}-width: 1px;
+			}
+
+			// 判断圆角是list还是number
+			@if (list==type-of($radius)) {
+				border-radius: nth($radius, 1) *
+					2
+					nth($radius, 2) *
+					2
+					nth($radius, 3) *
+					2
+					nth($radius, 4) *
+					2;
+			} @else {
+				border-radius: $radius * 2;
+			}
+		}
+	}
+
+	@media only screen and (-webkit-min-device-pixel-ratio: 3) {
+		&:#{$position} {
+			// 判断圆角是list还是number
+			@if (list==type-of($radius)) {
+				border-radius: nth($radius, 1) *
+					3
+					nth($radius, 2) *
+					3
+					nth($radius, 3) *
+					3
+					nth($radius, 4) *
+					3;
+			} @else {
+				border-radius: $radius * 3;
+			}
+
+			width: 300%;
+			height: 300%;
+			transform: scale(0.3333);
+		}
+	}
+}
+
+@mixin loading-half-circle($width: 1em) {
+	display: inline-block;
+	height: $width;
+	width: $width;
+	border-radius: $width;
+	border-style: solid;
+	border-width: $width/10;
+	border-color: transparent currentColor transparent transparent;
+	animation: rotate 0.6s linear infinite;
+	vertical-align: middle;
+}

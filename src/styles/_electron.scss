@@ -1,0 +1,8 @@
+.draggable {
+	cursor: grab;
+	-webkit-app-region: drag;
+	-webkit-user-select: none;
+	&:active {
+		cursor: grabbing;
+	}
+}

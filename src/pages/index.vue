@@ -1,17 +1,21 @@
-<template>
-  <div class="home">
-    <img src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+<template lang="pug">
+	.home
+		a(@click="entoRoom") enter room
 </template>
-
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
 export default {
-  name: 'home',
-  components: {
-    HelloWorld
-  }
-}
+	name: 'home',
+	methods: {
+		entoRoom() {
+			this.$router.push({
+				name: 'room',
+				params: {
+					id: Math.random()
+						.toString(36)
+						.slice(-8),
+				},
+			});
+		},
+	},
+};
 </script>
