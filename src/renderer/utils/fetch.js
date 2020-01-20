@@ -1,10 +1,8 @@
 export default class Request {
-	baseUrl;
 	init = {
 		mode: 'cors',
 		// credentials: 'include',
 	};
-	controller;
 
 	constructor(baseUrl) {
 		this.baseUrl = baseUrl;

@@ -70,12 +70,9 @@ app.on('activate', () => {
 });
 
 app.on('ready', async () => {
-	if (isDevelopment && !process.env.IS_TEST) {
-		try {
-			await installVueDevtools();
-		} catch (e) {
-			console.error('Vue Devtools failed to install:', e.toString());
-		}
+	// && !process.env.IS_ELECTRON
+	if (isDevelopment) {
+		await installVueDevtools();
 	}
 	createWindow();
 });

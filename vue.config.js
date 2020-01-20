@@ -13,7 +13,14 @@ const resolve = dir => {
 module.exports = {
 	transpileDependencies: ['vuetify'],
 	devServer: {
-		proxy: 'https://storeserverapi.zhougonglai.now.sh',
+		proxy: {
+			'/base': {
+				target: 'https://storeserverapi.zhougonglai.now.sh',
+			},
+			'/api': {
+				target: 'https://voice-api.nn.com',
+			},
+		},
 	},
 	// css相关配置
 	css: {

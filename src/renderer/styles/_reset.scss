@@ -41,100 +41,15 @@ p {
 }
 
 :root {
-	--mdc-theme-primary: #2f54eb;
-	/* light */
-	--geekblue-1: #f0f5ff;
-	--geekblue-2: #d6e4ff;
-	--geekblue-3: #adc6ff;
-	--geekblue-4: #85a5ff;
-	--geekblue-5: #597ef7;
-	/* dark */
-	--geekblue-6: #2f54eb;
-	--geekblue-7: #1d39c4;
-	--geekblue-8: #10239e;
-	--geekblue-9: #061178;
-	--geekblue-10: #030852;
-
-	/** gray **/
-	--gray-1: #ffffff;
-	--gray-2: #fafafa;
-	--gray-3: #f5f5f5;
-	--gray-4: #e8e8e8;
-	--gray-5: #d9d9d9;
-	/* dark */
-	--gray-6: #bfbfbf;
-	--gray-7: #8c8c8c;
-	--gray-8: #595959;
-	--gray-9: #262626;
-	--gray-10: #000000;
-
-	/** secondary **/
-	--mdc-theme-secondary: #0cd1e8;
-	--mdc-theme-secondary-rgb: 12, 209, 232;
-	--mdc-theme-secondary-contrast: #ffffff;
-	--mdc-theme-secondary-contrast-rgb: 255, 255, 255;
-	--mdc-theme-secondary-shade: #0bb8cc;
-	--mdc-theme-secondary-tint: #24d6ea;
-
-	/** tertiary **/
-	--mdc-theme-tertiary: #7044ff;
-	--mdc-theme-tertiary-rgb: 112, 68, 255;
-	--mdc-theme-tertiary-contrast: #ffffff;
-	--mdc-theme-tertiary-contrast-rgb: 255, 255, 255;
-	--mdc-theme-tertiary-shade: #633ce0;
-	--mdc-theme-tertiary-tint: #7e57ff;
-
-	/** success **/
-	--mdc-theme-success: #10dc60;
-	--mdc-theme-success-rgb: 16, 220, 96;
-	--mdc-theme-success-contrast: #ffffff;
-	--mdc-theme-success-contrast-rgb: 255, 255, 255;
-	--mdc-theme-success-shade: #0ec254;
-	--mdc-theme-success-tint: #28e070;
-
-	/** warning **/
-	--mdc-theme-warning: #ffce00;
-	--mdc-theme-warning-rgb: 255, 206, 0;
-	--mdc-theme-warning-contrast: #ffffff;
-	--mdc-theme-warning-contrast-rgb: 255, 255, 255;
-	--mdc-theme-warning-shade: #e0b500;
-	--mdc-theme-warning-tint: #ffd31a;
-
-	/** danger **/
-	--mdc-theme-danger: #f04141;
-	--mdc-theme-danger-rgb: 245, 61, 61;
-	--mdc-theme-danger-contrast: #ffffff;
-	--mdc-theme-danger-contrast-rgb: 255, 255, 255;
-	--mdc-theme-danger-shade: #d33939;
-	--mdc-theme-danger-tint: #f25454;
-
-	/** dark **/
-	--mdc-theme-dark: #222428;
-	--mdc-theme-dark-rgb: 34, 34, 34;
-	--mdc-theme-dark-contrast: #ffffff;
-	--mdc-theme-dark-contrast-rgb: 255, 255, 255;
-	--mdc-theme-dark-shade: #1e2023;
-	--mdc-theme-dark-tint: #383a3e;
-
-	/** medium **/
-	--mdc-theme-medium: #989aa2;
-	--mdc-theme-medium-rgb: 152, 154, 162;
-	--mdc-theme-medium-contrast: #ffffff;
-	--mdc-theme-medium-contrast-rgb: 255, 255, 255;
-	--mdc-theme-medium-shade: #86888f;
-	--mdc-theme-medium-tint: #a2a4ab;
-
-	/** light **/
-	--mdc-theme-light: #f4f5f8;
-	--mdc-theme-light-rgb: 244, 244, 244;
-	--mdc-theme-light-contrast: #000000;
-	--mdc-theme-light-contrast-rgb: 0, 0, 0;
-	--mdc-theme-light-shade: #d7d8da;
-	--mdc-theme-light-tint: #f5f6f9;
+	--nn-primary: #23f3ad;
 }
 
 $n: 8px;
 
 .v-app-bar {
-	backdrop-filter: blur(25px);
+	backdrop-filter: blur(11px);
+	background-color: rgba(22, 22, 22, 0.75);
+	.v-toolbar__content {
+		padding-left: 120px;
+	}
 }
