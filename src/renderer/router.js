@@ -12,7 +12,7 @@ export default new Router({
 			component: () =>
 				import(
 					/* webpackChunkName: "layout.default" */
-					'@/layouts/default'
+					'@layouts/default'
 				),
 			children: [
 				{
@@ -24,7 +24,7 @@ export default new Router({
 					component: () =>
 						import(
 							/* webpackChunkName: "page.index" */
-							'@/pages/index'
+							'@pages/index'
 						),
 				},
 				{
@@ -37,7 +37,7 @@ export default new Router({
 					component: () =>
 						import(
 							/* webpackChunkName: "page.room" */
-							'@/pages/room'
+							'@pages/room'
 						),
 				},
 			],
