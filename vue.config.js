@@ -68,7 +68,7 @@ module.exports = {
 					commons: {
 						name: 'chunk-commons',
 						test: resolve('src/renderer/components'), // 可自定义拓展你的规则
-						minChunks: 1, // 最小公用次数
+						minChunks: 3, // 最小公用次数
 						priority: -15,
 						reuseExistingChunk: true,
 					},
@@ -91,10 +91,9 @@ module.exports = {
 	pluginOptions: {
 		dll: {
 			entry: ['vue', 'vue-router'],
+			open: process.env.NODE_ENV === 'production',
 			output: path.join(__dirname, './public/dll'),
 			cacheFilePath: path.resolve(__dirname, './public'),
-			// open: 'auto',
-			// inject: true,
 		},
 		electronBuilder: {
 			builderOptions: {

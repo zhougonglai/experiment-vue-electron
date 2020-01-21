@@ -5,7 +5,6 @@
 			dark
 			fixed
 			class="draggable"
-			color="dark"
 			shrink-on-scroll
 			prominent
 			scroll-target="#scrolling-techniques"

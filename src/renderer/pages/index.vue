@@ -1,7 +1,7 @@
 <template lang="pug">
 	v-container.home.fill-height(fluid align="start")
 		v-carousel(cycle height="400" hide-delimiter-background show-arrows-on-hover)
-			v-carousel-item(v-for="(banner, i) of banners" :key="i")
+			v-carousel-item(v-for="(banner, i) of banners" :key="banner.corver.slice(-20, -5)" :value="banner.corver.slice(-20, -5)")
 				v-img.full-height(:src="banner.corver")
 		v-row(v-if="channels.length" align="start" justify="start")
 			v-col(lg="3" xl="4" cols="4" v-for="channel of channels" :key="channel.channel_no")
@@ -59,7 +59,6 @@ export default {
 		...mapActions('channel', ['getChannels']),
 	},
 	created() {
-		this.getRooms();
 		this.getChannels();
 	},
 };

@@ -48,7 +48,7 @@ $n: 8px;
 
 .v-app-bar {
 	backdrop-filter: blur(11px);
-	background-color: rgba(22, 22, 22, 0.75);
+	background-color: rgba(22, 22, 22, 0.75) !important;
 	.v-toolbar__content {
 		padding-left: 120px;
 	}
