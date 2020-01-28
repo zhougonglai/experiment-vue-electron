@@ -40,10 +40,10 @@ export default class extends EventEmitter {
 				this.windows[page].show();
 				return this.windows[page];
 			} else {
-				this.createWindow({ name: page, path: '' }, options);
+				return this.createWindow({ name: page, path: '' }, options);
 			}
 		} else {
-			this.createWindow(page, options);
+			return this.createWindow(page, options);
 		}
 	}
 

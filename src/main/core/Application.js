@@ -14,9 +14,11 @@ export default class extends EventEmitter {
 	}
 
 	eventsManager() {
-		ipc.on('entoChannel', async channel => {
-			this.showPage({ name: 'channel', path: `room/${channel}` });
-			return 'reply data';
+		ipc.on('entoChannel', async id => {
+			return await this.showPage({
+				name: 'channel',
+				path: `room/${id}`,
+			});
 		});
 	}
 

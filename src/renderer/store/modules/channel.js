@@ -13,15 +13,6 @@ const actions = {
 		const { data } = await channelService.getChannels();
 		commit(types('LIST'), data.list);
 	},
-	async entoChannel() {
-		if (process.env.IS_ELECTRON) {
-			const platform = (await import('./electron')).default;
-			platform.entoChannel();
-		} else {
-			const platform = (await import('./web')).default;
-			platform.entoChannel();
-		}
-	},
 };
 
 const mutations = {

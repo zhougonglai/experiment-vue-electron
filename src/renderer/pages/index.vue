@@ -10,7 +10,7 @@
 		//- 		v-img.full-height(:src="banner.corver")
 		v-row(v-if="channels.length" align="start" justify="start")
 			v-col(lg="3" xl="4" cols="4" v-for="channel of channels" :key="channel.channel_no")
-				v-card(hover ripple @click="entoChannel")
+				v-card(hover ripple @click="entoChannel(channel)")
 					v-img.white--text.align-end(height="200px" :src="channel.cover")
 					v-card-title.text-no-wrap.text-truncate.d-block(v-text="channel.name")
 					v-card-subtitle.d-flex.align-center
@@ -23,6 +23,9 @@
 </template>
 <script>
 import { mapState, mapActions } from 'vuex';
+import ipc from '@utils/ipc';
+
+const { entoChannel } = ipc;
 
 export default {
 	name: 'home',
@@ -51,7 +54,8 @@ export default {
 		...mapState('channel', ['channels']),
 	},
 	methods: {
-		...mapActions('channel', ['getChannels', 'entoChannel']),
+		entoChannel,
+		...mapActions('channel', ['getChannels']),
 	},
 	mounted() {
 		this.getChannels();

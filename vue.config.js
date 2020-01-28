@@ -32,6 +32,7 @@ module.exports = {
 		resolve: {
 			alias: {
 				'@': resolve('src'),
+				'@environments': resolve('src/environments.js'),
 				'@renderer': resolve('src/renderer'),
 				'@share': resolve('src/share'),
 				'@components': resolve('src/renderer/components'),
