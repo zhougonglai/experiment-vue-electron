@@ -14,9 +14,6 @@ module.exports = {
 	transpileDependencies: ['vuetify'],
 	devServer: {
 		proxy: {
-			'/base': {
-				target: 'https://storeserverapi.zhougonglai.now.sh',
-			},
 			'/api': {
 				target: 'https://voice-api.nn.com',
 			},
@@ -35,7 +32,6 @@ module.exports = {
 		resolve: {
 			alias: {
 				'@': resolve('src'),
-				'@main': resolve('src/main'),
 				'@renderer': resolve('src/renderer'),
 				'@share': resolve('src/share'),
 				'@components': resolve('src/renderer/components'),
@@ -89,12 +85,6 @@ module.exports = {
 		],
 	},
 	pluginOptions: {
-		dll: {
-			entry: ['vue', 'vue-router'],
-			open: process.env.NODE_ENV === 'production',
-			output: path.join(__dirname, './public/dll'),
-			cacheFilePath: path.resolve(__dirname, './public'),
-		},
 		electronBuilder: {
 			builderOptions: {
 				productName: 'NN',

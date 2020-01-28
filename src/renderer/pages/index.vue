@@ -1,11 +1,16 @@
 <template lang="pug">
-	v-container.home.fill-height(fluid align="start")
-		v-carousel(cycle height="400" hide-delimiter-background show-arrows-on-hover)
-			v-carousel-item(v-for="(banner, i) of banners" :key="banner.corver.slice(-20, -5)" :value="banner.corver.slice(-20, -5)")
-				v-img.full-height(:src="banner.corver")
+	v-container.home.fill-height.align-start.justify-center(fluid)
+		v-item-group
+			v-row(align="start" justify="center")
+				v-col(cols="4" v-for="(banner, i) of banners" :key="banner.corver.slice(-20, -5)")
+					v-item
+						v-img.full-height(:src="banner.corver")
+		//- v-carousel(cycle hide-delimiter-background show-arrows-on-hover height="350")
+		//- 	v-carousel-item(v-for="(banner, i) of banners" :key="banner.corver.slice(-20, -5)")
+		//- 		v-img.full-height(:src="banner.corver")
 		v-row(v-if="channels.length" align="start" justify="start")
 			v-col(lg="3" xl="4" cols="4" v-for="channel of channels" :key="channel.channel_no")
-				v-card(hover ripple)
+				v-card(hover ripple @click="entoChannel")
 					v-img.white--text.align-end(height="200px" :src="channel.cover")
 					v-card-title.text-no-wrap.text-truncate.d-block(v-text="channel.name")
 					v-card-subtitle.d-flex.align-center
@@ -46,19 +51,9 @@ export default {
 		...mapState('channel', ['channels']),
 	},
 	methods: {
-		entoRoom() {
-			this.$router.push({
-				name: 'room',
-				params: {
-					id: Math.random()
-						.toString(36)
-						.slice(-8),
-				},
-			});
-		},
-		...mapActions('channel', ['getChannels']),
+		...mapActions('channel', ['getChannels', 'entoChannel']),
 	},
-	created() {
+	mounted() {
 		this.getChannels();
 	},
 };
