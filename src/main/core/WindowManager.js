@@ -48,10 +48,27 @@ export default class extends EventEmitter {
 	}
 
 	createWindow(pageOptions, options) {
-		const window = new BrowserWindow({
-			...defaultConfig,
-			...options,
-		});
+		let window;
+		if (this.windows[pageOptions.name]) {
+			window = this.windows[pageOptions.name];
+			window.show();
+		} else {
+			window = new BrowserWindow({
+				...defaultConfig,
+				...options,
+			});
+			window.once('ready-to-show', () => {
+				this.emit('ready', window.id);
+				window.show();
+				this.windows[pageOptions.name] = window;
+			});
+
+			window.on('close', () => {
+				this.emit('close', window.id);
+				this.windows[pageOptions.name] = null;
+			});
+		}
+
 		if (process.env.WEBPACK_DEV_SERVER_URL) {
 			window.loadURL(process.env.WEBPACK_DEV_SERVER_URL + pageOptions.path);
 			if (!process.env.IS_TEST) {
@@ -61,17 +78,6 @@ export default class extends EventEmitter {
 			createProtocol('nn');
 			window.loadURL('nn://./index.html');
 		}
-
-		window.once('ready-to-show', () => {
-			this.emit('ready', window.id);
-			window.show();
-			this.windows[pageOptions.name] = window;
-		});
-
-		window.on('close', () => {
-			this.emit('close', window.id);
-			this.windows[pageOptions.name] = null;
-		});
 
 		return window;
 	}
